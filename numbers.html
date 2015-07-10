@@ -46,12 +46,12 @@ function make_worksheet(button) {
 }
 
 function make_problem () {
-	var op = random_problem_type();
+	var op = "*"; //random_problem_type();
 	switch (op) {
 	case "*":
-		return {op1: 1 + random_int(4),
+		return {op1: 2 + random_int(9),
 						operand: op,
-						op2: 1 + random_int(5)
+						op2: 2 + random_int(11)
 					 };
 		break;
 	case "+":
