@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" type="text/css"  href="style.css"/>
+<style type='text/css'>
+ul.problems {list-style: none; clear: both;}
+
+ul.problems li {
+font-size: 150%;
+float: left;
+width: 2em;
+margin-right: 2em;
+margin-bottom: 1em;
+}
+
+ul.problems li div {text-align: right}
+
+ul.problems li div.op1 {}
+
+ul.problems li div.op2 {}
+
+ul.problems li hr {}
+
+ul.problems li div.result {height: 1em;}
+
+</style>
+<script type='text/javascript' src='prototype.js'></script>
+<script type='text/javascript' src='utils.js'></script>
+<script type='text/javascript'>
+var nProblems = 24;
+
+var mathTemplate = new Template("<li>\
+<div class='op1'>#{op1}</div>\
+<div class='op2'>#{operand} #{op2}</div>\
+<hr/>\
+<div class='result'></div>\
+</li>");
+
+function make_worksheet(button) {
+	$("problems").innerHTML =  "";
+  for (var i = 0; i < nProblems; i++) {
+	  $("problems").innerHTML =  $("problems").innerHTML + mathTemplate.evaluate(make_problem());
+	}
+}
+
+function make_problem () {
+	var op = random_problem_type();
+	switch (op) {
+	case "*":
+		return {op1: 1 + random_int(4),
+						operand: op,
+						op2: 1 + random_int(5)
+					 };
+		break;
+	case "+":
+    return {op1: random_int(31),
+		        operand: op,
+            op2: random_int(11)};
+		break;
+	case "-":
+    var op1 = random_int(21) + 1;
+    return {op1: op1,
+            operand: op,
+            op2: random_int(op1 - 1)};
+  }
+}
+
+function random_problem_type () {
+  var r = Math.random();
+	if (r <= 0) {
+		return "*";
+	}
+	if (r <= .6) {
+		return "+";
+	}
+	return "-";
+}
+
+</script>
+<title>Number problems for Michal</title>
+</head>
+<body class='worksheet'>
+<h1>Number problems for <span>&#1502;&#1497;&#1499&#1500;</span></h1>
+<div class='controls'>
+<button onclick='make_worksheet(this)'>Make worksheet</button>
+
+<button onclick='print_worksheet(this)'>Print</button>
+
+<button onclick='document.location="index.html"'>Back</button>
+</div>
+
+<ul class='problems' id='problems'> 
+</ul>
+</body>
+</html>
+

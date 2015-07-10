@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" type="text/css"  href="style.css"/>
+
+<style type='text/css'>
+
+ol.problems {
+ clear: both;
+}
+
+ol.problems li {
+ margin-bottom: 1em;
+}
+
+</style>
+<script type='text/javascript' src='prototype.js'></script>
+<script type='text/javascript' src='utils.js'></script>
+<script type='text/javascript' src='number_story.js'></script>
+<script type='text/javascript'>
+var nProblems = 10;
+
+function make_worksheet(button) {
+	$("problems").innerHTML =  "";
+  for (var i = 0; i < nProblems; i++) {
+	  $("problems").innerHTML =  $("problems").innerHTML + "<li>" + new NumberStory().toHtml() + "</li>\n";
+	}
+}
+
+</script>
+<title>Number stories for Michal</title>
+</head>
+<body class='worksheet'>
+<h1>Number stories for <span>&#1502;&#1497;&#1499&#1500;</span></h1>
+<div class='controls'>
+<button onclick='make_worksheet(this)'>Make worksheet</button>
+
+<button onclick='print_worksheet(this)'>Print</button>
+
+<button onclick='document.location="index.html"'>Back</button>
+</div>
+
+<ol class='problems' id='problems'> 
+</ul>
+</body>
+</html>
+
